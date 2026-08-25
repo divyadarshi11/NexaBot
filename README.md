@@ -157,6 +157,4 @@ Some natural next steps if you want to build on this:
 - Add RAG by loading documents into a vector store before each request
 - Support multiple concurrent sessions keyed by user ID
 
-## License
 
-MIT — see [LICENSE](LICENSE).
