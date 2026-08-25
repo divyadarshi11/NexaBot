@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>chatbot — conversation log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;450;500;600&family=Newsreader:opsz,wght@6..72,380;6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ── rail ──────────────────────────────────────────────────────────── -->
+  <aside class="rail">
+    <header class="brand">
+      <span class="brand-word">NexaBot</span><span class="caret" aria-hidden="true"></span>
+      <span class="brand-ver">v{{ version }}</span>
+    </header>
+
+    <div class="rail-actions">
+      <button id="new-chat" class="btn btn-primary" type="button">New chat</button>
+      <button id="save-chat" class="btn" type="button">Save transcript</button>
+    </div>
+
+    <section class="rail-block">
+      <h2 class="eyebrow">Saved transcripts</h2>
+      <ul id="session-list" class="sessions"></ul>
+      <p id="sessions-empty" class="rail-note">Nothing saved yet. Use <em>Save transcript</em> to keep a conversation.</p>
+    </section>
+
+    <details class="rail-block settings">
+      <summary class="eyebrow">Settings</summary>
+      <label class="field">
+        <span>Model</span>
+        <input id="f-model" type="text" spellcheck="false" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>Max tokens per reply</span>
+        <input id="f-tokens" type="number" min="1" step="64">
+      </label>
+      <label class="field">
+        <span>System prompt</span>
+        <textarea id="f-system" rows="4" spellcheck="false"></textarea>
+      </label>
+      <button id="save-settings" class="btn btn-small" type="button">Apply</button>
+      <p class="rail-note">Model and tokens apply to the next reply. Changing the system prompt affects the rest of this chat.</p>
+    </details>
+  </aside>
+
+  <!-- ── transcript ────────────────────────────────────────────────────── -->
+  <main class="main">
+    <div class="topbar">
+      <span id="topbar-model" class="mono-label"></span>
+      <span id="topbar-turns" class="mono-label muted"></span>
+    </div>
+
+    <div id="scroller" class="scroller">
+      <div id="log" class="log">
+        <div id="empty" class="empty">
+          <p class="empty-line">No turns recorded.</p>
+          <p class="empty-sub">Every exchange below is numbered and timed, and the whole log can be written to disk as JSON.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer">
+      <div class="composer-inner">
+        <textarea id="input" rows="1" placeholder="Ask something…" spellcheck="true"></textarea>
+        <div class="composer-side">
+          <button id="send" class="btn btn-primary" type="button">Send</button>
+          <span class="hint mono-label">Enter sends · Shift+Enter new line</span>
+        </div>
+      </div>
+      <div id="banner" class="banner" hidden></div>
+    </div>
+  </main>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
