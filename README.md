@@ -4,6 +4,10 @@ A chatbot powered by the [Anthropic API](https://docs.claude.com), with two fron
 
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 
+## 📸 Project Snapshot
+
+![NexaBot Snapshot](./NexaBot/image.png)
+
 ## Features
 
 - 🔴 **Live streaming replies** — tokens render as they arrive, as Markdown (code blocks, lists and tables included)
